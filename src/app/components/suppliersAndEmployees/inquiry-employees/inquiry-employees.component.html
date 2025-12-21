@@ -1,0 +1,385 @@
+<div class="Sales-Inquiry mt-5">
+  <div class="container-fluid mb-3">
+
+    <!------------------------ table -------------------------------->
+    <div class="table-responsive custom-table">
+      <!-- title -->
+      <div class="row justify-content-between">
+        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12">
+          <div class="SalesInquiry-title">
+            <div class="icon-stack">
+              <i class="fa-solid fa-table"></i>
+              <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            </div>
+            <h1> الإستعلام عن العاملين </h1>
+          </div>
+        </div>
+
+        <div class="col-xl-7 col-lg-6 col-md-5 col-sm-4 col-12">
+          <button type="button" class="btn Custombtn-filter" (click)="toggleFilter()">
+            <img src="/assets/img/filter.png" alt="">
+          </button>
+        </div>
+      </div>
+      <!-- Filter Modal -->
+      @if (showFilter) {
+      <div class="Customfilter"> <!-- أضف animation trigger -->
+        <form role="search">
+          <h3 class="mb-4">البحث</h3>
+          <div class="form-group mb-4">
+            <label for="status" class="form-label">موقع العمل</label>
+            <select dir="rtl" id="validationCustom04" class="form-select custom-select" name="foodType" required>
+              <option value="" disabled selected>اختر</option>
+              <option value="italian">السكري</option>
+            </select>
+          </div>
+          <div class="row justify-content-center">
+            <button type="button" class="btn btn-filtering w-25">تصفية</button>
+            <button type="button" class="btn btn-remove w-25" (click)="onClear()">تفريغ</button>
+          </div>
+        </form>
+      </div>
+      }
+      <table class="table table-bordered custom-table-design text-center mt-4">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>اسم العامل</th>
+            <th>نظام العمل</th>
+            <th>موقع العمل</th>
+            <th>رقم التليفون</th>
+            <th>رقم الحساب</th>
+            <th>ملاحظات</th>
+            <th>تعديل</th>
+            <th>حذف</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>شركة الفراعنة</td>
+            <td>نسبة</td>
+            <td>السكري</td>
+            <td>012850365210</td>
+            <td>201475210000000361</td>
+            <td>الشرح</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الفراعنة</td>
+            <td>نسبة</td>
+            <td>السكري</td>
+            <td>012850365210</td>
+            <td>201475210000000361</td>
+            <td>الشرح</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الفراعنة</td>
+            <td>نسبة</td>
+            <td>السكري</td>
+            <td>012850365210</td>
+            <td>201475210000000361</td>
+            <td>الشرح</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الفراعنة</td>
+            <td>نسبة</td>
+            <td>السكري</td>
+            <td>012850365210</td>
+            <td>201475210000000361</td>
+            <td>الشرح</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الفراعنة</td>
+            <td>نسبة</td>
+            <td>السكري</td>
+            <td>012850365210</td>
+            <td>201475210000000361</td>
+            <td>الشرح</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الفراعنة</td>
+            <td>نسبة</td>
+            <td>السكري</td>
+            <td>012850365210</td>
+            <td>201475210000000361</td>
+            <td>الشرح</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الفراعنة</td>
+            <td>نسبة</td>
+            <td>السكري</td>
+            <td>012850365210</td>
+            <td>201475210000000361</td>
+            <td>الشرح</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الفراعنة</td>
+            <td>نسبة</td>
+            <td>السكري</td>
+            <td>012850365210</td>
+            <td>201475210000000361</td>
+            <td>الشرح</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الفراعنة</td>
+            <td>نسبة</td>
+            <td>السكري</td>
+            <td>012850365210</td>
+            <td>201475210000000361</td>
+            <td>الشرح</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الفراعنة</td>
+            <td>نسبة</td>
+            <td>السكري</td>
+            <td>012850365210</td>
+            <td>201475210000000361</td>
+            <td>الشرح</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الفراعنة</td>
+            <td>نسبة</td>
+            <td>السكري</td>
+            <td>012850365210</td>
+            <td>201475210000000361</td>
+            <td>الشرح</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الفراعنة</td>
+            <td>نسبة</td>
+            <td>السكري</td>
+            <td>012850365210</td>
+            <td>201475210000000361</td>
+            <td>الشرح</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الفراعنة</td>
+            <td>نسبة</td>
+            <td>السكري</td>
+            <td>012850365210</td>
+            <td>201475210000000361</td>
+            <td>الشرح</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الفراعنة</td>
+            <td>نسبة</td>
+            <td>السكري</td>
+            <td>012850365210</td>
+            <td>201475210000000361</td>
+            <td>الشرح</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الفراعنة</td>
+            <td>نسبة</td>
+            <td>السكري</td>
+            <td>012850365210</td>
+            <td>201475210000000361</td>
+            <td>الشرح</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الفراعنة</td>
+            <td>نسبة</td>
+            <td>السكري</td>
+            <td>012850365210</td>
+            <td>201475210000000361</td>
+            <td>الشرح</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الفراعنة</td>
+            <td>نسبة</td>
+            <td>السكري</td>
+            <td>012850365210</td>
+            <td>201475210000000361</td>
+            <td>الشرح</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

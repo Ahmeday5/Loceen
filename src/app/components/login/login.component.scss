@@ -1,0 +1,147 @@
+.loginPage {
+  min-height: 100vh !important;
+  height: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  position: relative;
+}
+
+.loginPage .form-login {
+  background: #ffffffbf;
+  border-radius: 50px;
+  padding: 40px 20px;
+}
+
+form {
+  color: var(--second-color);
+  border-left: 4px solid var(--main-color);
+  padding: 7px;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group .form-label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.form-group .form-control {
+  padding: 10px !important;
+  background: #ffffff;
+  border-radius: 5px;
+  border: 1px solid var(--main-color);
+}
+
+.form-control::placeholder {
+  color: var(--third-color);
+  font-family: var(--main-font) !important;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 100%;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border: none;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 71%;
+  left: 1%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding: 5px;
+}
+
+.remember {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  margin-right: 15px;
+}
+
+.remember input {
+  margin-left: 5px !important;
+  border-color: var(--main-color);
+}
+
+.remember label {
+  font-family: var(--main-font) !important;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--second-color);
+}
+
+.forgetpass a {
+  font-family: var(--main-font) !important;
+  font-weight: bold;
+  font-size: 17px;
+  color: var(--second-color);
+}
+
+.submit a {
+  border-radius: 8px;
+  background: var(--main-color);
+  font-family: var(--main-font) !important;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  color: var(--second-color);
+  padding: 15px 80px;
+}
+
+.loginPage .content-imgs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loginPage .content-imgs .imgs {
+  position: relative;
+}
+
+.loginPage .content-imgs .imgs .img2 {
+  position: absolute;
+  top: 13%;
+  left: 17%;
+}
+
+/************************footer***********************/
+
+.loginPage .footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--main-color);
+  padding: 5px;
+}
+
+@media (max-width: 992px) {
+  .loginPage {
+    overflow: auto;
+  }
+
+  form {
+    border-left: none !important;
+    padding: 0 !important;
+  }
+
+  .loginPage .form-login {
+    border-radius: 25px !important;
+    padding: 10px !important;
+    margin: 10px 0 !important;
+  }
+
+  .loginPage .col-reverse {
+    flex-direction: column-reverse !important;
+  }
+
+  .loginPage .footer {
+    bottom: -6%;
+  }
+}

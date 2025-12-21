@@ -1,0 +1,66 @@
+.header {
+  height: 15vh;
+  font-family: var(--font-latin); /* الخط العربي */
+  font-weight: 600;
+  line-height: 100%;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  z-index: 90000000;
+  background-color: transparent; /* خلفية افتراضية شفافة أو أضف لون أساسي لو عايز */
+  box-sizing: border-box;
+}
+
+.header .row {
+  height: 15vh;
+  margin: 0; /* إزالة margins الافتراضية */
+}
+
+.header .content-imgs {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  text-align: center;
+}
+
+.header .content-imgs h6 {
+  color: #ffffff;
+}
+
+.header .content-imgs .imgs {
+  position: relative;
+}
+
+.header .content-imgs img {
+  width: 100px;
+  height: 7vh;
+}
+
+.header .content-imgs .imgs .img2 {
+  position: absolute;
+  top: 13%;
+  left: 17%;
+}
+
+
+/* تحسين Responsive */
+@media (max-width: 577px) {
+  .header .imgs {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    height: 13vh; /* أصغر شوية على الموبايل */
+  }
+
+  .header .row,
+  .header .main-content {
+    height: 13vh;
+  }
+
+  .header .imgs {
+    height: 12.9vh;
+  }
+}

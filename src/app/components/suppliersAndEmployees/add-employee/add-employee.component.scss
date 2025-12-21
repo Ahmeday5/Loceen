@@ -1,0 +1,79 @@
+.addSale-title {
+  background: var(--four-color);
+  color: var(--main-color);
+  box-shadow: 0px 4px 4px 0px #00000040;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.addSale-title h1 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/********************row-workSite************************/
+
+.row-workSite {
+  background: var(--third-color);
+  border-radius: 8px;
+  padding: 10px;
+  color: var(--second-color);
+}
+
+.row-workSite .workSite h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.custom-check-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.custom-check-row .checkbox-item {
+  padding: 0.3rem;
+  width: 50%; /* موبايل */
+}
+
+/* شاشات متوسطة */
+@media (min-width: 550px) {
+  .custom-check-row .checkbox-item {
+    width: 33%; /* 3 في الصف */
+  }
+}
+
+/* شاشات متوسطة */
+@media (min-width: 768px) {
+  .custom-check-row .checkbox-item {
+    width: 20%; /* 3 في الصف */
+  }
+}
+
+/* شاشات كبيرة (LG + XL) */
+@media (min-width: 992px) {
+  .custom-check-row .checkbox-item {
+    width: 20%; /* 5 في الصف */
+  }
+}
+
+.remember {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.remember input {
+  margin-left: 10px !important;
+  border-color: var(--main-color);
+  font-size: 40px;
+}
+
+.remember label {
+  font-weight: bold;
+  font-size: 13px;
+  color: var(--second-color);
+  margin-top: 5px;
+}
+

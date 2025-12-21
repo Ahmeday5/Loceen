@@ -1,0 +1,14 @@
+<div class="content-wrapper">
+
+  <!-- 1- الخلفية والـ overlay مرة واحدة بس في الـ root -->
+  <div class="page-bg"></div>
+  <div class="page-bg-overlay"></div>
+
+  @if (isLoggedIn) {
+  <app-sidebar></app-sidebar>
+  }
+
+  <main class="content" [ngClass]="{'full-width': !isLoggedIn}">
+    <router-outlet></router-outlet>
+  </main>
+</div>

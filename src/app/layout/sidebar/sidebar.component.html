@@ -1,0 +1,72 @@
+<button class="btn btn-primary toggle-btn" [ngClass]="{'toggle-btn-open': isSidebarOpen}" (click)="toggleSidebar()">
+  <i [class]="isSidebarOpen ? 'fa-solid fa-times' : 'fa-solid fa-bars'"></i>
+</button>
+
+<!-- حاوية الـ Sidebar -->
+<aside class="sidebar" [ngClass]="{'sidebar-open': isSidebarOpen , 'sidebar-collapsed': isCollapsed && isSidebarOpen}"
+  dir="rtl">
+  <nav class="sidebar-nav" id="sidebar">
+    <!-- رأس الـ Sidebar -->
+    <div class="sidebar-header d-flex">
+      <div class="search-container" id="search-container">
+        <input #searchInput id="Search" type="text" class="form-control" placeholder="دور في القايمة..."
+          aria-label="Search">
+        <i class="fas fa-search search-icon"></i>
+      </div>
+
+      <!-- زر التصغير / التكبير -->
+      <div class="collapse-toggle ms-2" (click)="toggleCollapse()">
+        <i class="fa-solid" [class.fa-angles-right]="!isCollapsed" [class.fa-angles-left]="isCollapsed"></i>
+      </div>
+    </div>
+
+    <!-- قائمة التنقل -->
+    <div class="nav-sections">
+      <!-- تكرار الأقسام من القائمة المفلترة -->
+      @for (section of filteredMenuItems; track sectionIndex; let sectionIndex = $index) {
+      <div class="menu-section">
+
+        <ul class="nav-menu">
+          @for (item of section.items; track itemIndex; let itemIndex = $index) {
+          <li class="nav-item" [ngClass]="{'has-submenu': item.submenu, 'open': item.isOpen}">
+
+            @if (item.submenu) {
+            <a href="#" class="nav-link" (click)="toggleSubmenu(sectionIndex, itemIndex); $event.preventDefault()">
+              <div class="icon-text">
+                <i [class]="item.icons"></i>
+                <span>{{ item.label }}</span>
+                <i [class]="item.isOpen ? 'fa-solid fa-caret-up' : 'fa-solid fa-caret-down'" class="submenu-arrow"></i>
+              </div>
+            </a>
+
+            <ul class="submenu" [ngClass]="{'open': item.isOpen}">
+              @for (subItem of item.submenu; track subItemIndex; let subItemIndex = $index) {
+              <li class="nav-item">
+                <a [routerLink]="subItem.path" class="nav-link" routerLinkActive="nav-active"
+                  [routerLinkActiveOptions]="{ exact: true }">
+                  <div class="icon-text">
+                    <i [class]="subItem.icon"></i>
+                    <span>{{ subItem.key }}</span>
+                  </div>
+                </a>
+              </li>
+              }
+            </ul>
+            } @else {
+            <a [routerLink]="item.path" class="nav-link" routerLinkActive="nav-active"
+              [routerLinkActiveOptions]="{ exact: false }">
+              <div class="icon-text">
+                <i [class]="item.icons"></i>
+                <span>{{ item.label }}</span>
+              </div>
+            </a>
+            }
+
+          </li>
+          }
+        </ul>
+      </div>
+      }
+    </div>
+  </nav>
+</aside>

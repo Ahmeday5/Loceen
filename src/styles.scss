@@ -1,0 +1,224 @@
+/**********************************************maincolor*********************************************************/
+:root {
+  --main-color: #f4982c;
+  --second-color: #000000;
+  --third-color: #d9d9d9;
+  --four-color: #595050;
+  --five-color: #ffffff;
+  --main-font: "Almarai", sans-serif;
+  --main-transition: 0.3s;
+}
+
+html {
+  /* عشان لم ادوس علي حاجة يروح للمكان بتاعها*/
+  scroll-behavior: smooth;
+  font-family: var(--main-font) !important;
+}
+
+body {
+  margin: 0 !important;
+  font-family: var(--main-font) !important;
+  font-weight: 300;
+  font-style: normal;
+  direction: rtl;
+}
+
+.row {
+  margin: 0;
+}
+
+.container-fluid {
+  padding-right: 20px !important;
+  padding-left: 20px !important;
+}
+
+/*******************************************form*******************************************************/
+
+/***********switch*********/
+.form-switch {
+  display: flex;
+  justify-content: center;
+}
+
+.form-switch .form-check-input {
+  border: 1px solid var(--main-color);
+}
+
+.form-switch .form-check-input:focus {
+  box-shadow: none;
+}
+.form-check-input:checked {
+  background-color: var(--main-color);
+  border-color: var(--main-color);
+}
+
+/***********form-control***********/
+
+.form-label {
+  color: var(--second-color) !important;
+  font-weight: bold !important;
+}
+
+.form-control {
+  background: var(--main-color) !important;
+  border: none !important;
+  border-radius: 8px !important;
+}
+
+.form-control:focus {
+  border: 1px solid var(--second-color) !important;
+  box-shadow: none !important ;
+}
+
+/*************select**************/
+
+.form-select.custom-select {
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  color: var(--five-color);
+  background-position: left 0.75rem center; /* السهم على اليسار */
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  background: var(--main-color);
+}
+
+.form-select.custom-select:focus {
+  border: 1px solid var(--main-color);
+  box-shadow: none;
+  outline: none;
+}
+
+.form-select.custom-select:invalid {
+  border-color: var(--main-color);
+}
+
+/******************************************btns*****************************************************/
+
+.btn-save {
+  background: var(--four-color) !important;
+  color: var(--five-color) !important;
+  border-radius: 12px !important;
+  padding: 7px 30px !important;
+}
+
+.btn-save:hover,
+.btn-save:focus {
+  background: var(--four-color) !important;
+  color: var(--five-color) !important;
+  border: none !important;
+}
+
+/******************************************  table *******************************************************/
+
+.custom-table {
+  overflow-x: auto;
+  border-radius: 5px;
+  position: relative;
+}
+
+.custom-table-design {
+  border: 3px solid var(--main-color) !important;
+  font-weight: bold !important;
+}
+
+.custom-table-design thead th {
+  color: var(--second-color);
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 100%;
+  padding: 10px !important;
+  border: 3px solid var(--main-color);
+  background: var(--third-color) !important;
+}
+
+.custom-table-design tbody td {
+  font-weight: 800;
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--second-color);
+  padding: 10px !important;
+  border: 3px solid var(--main-color);
+  background: var(--third-color) !important;
+}
+
+.btn-table-edit {
+  color: var(--main-color);
+  border: none !important;
+}
+
+.btn-table-edit:focus {
+  color: var(--second-color);
+  border: none !important;
+}
+
+.btn-table-delete {
+  color: var(--main-color);
+  border: none !important;
+}
+
+.btn-table-delete:focus {
+  color: var(--second-color);
+  border: none !important;
+}
+
+/****************************filtering****************************************/
+
+.Custombtn-filter {
+  width: auto !important;
+  border: none !important;
+  background: transparent !important;
+  cursor: pointer !important;
+  background: var(--main-color) !important;
+}
+
+/* Button transitions */
+
+.Customfilter .btn-filtering,
+.Customfilter .btn-remove {
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important; // scale على hover
+}
+
+.Customfilter .btn-filtering {
+  background: var(--main-color) !important;
+  color: var(--second-color) !important;
+  border: none !important;
+  border-radius: 5px !important;
+}
+
+.Customfilter .btn-filtering:hover,
+.Customfilter .btn-filtering:focus,
+.Customfilter .btn-filtering:active {
+  background: var(--main-color) !important;
+  color: var(--second-color) !important;
+  outline: none !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+.Customfilter .btn-remove {
+  background: var(--second-color) !important;
+  color: var(--main-color) !important;
+  border: none !important;
+  border-radius: 5px !important;
+  padding: 10px !important;
+  margin-right: 7px !important;
+}
+
+.Customfilter .btn-remove:hover,
+.Customfilter .btn-remove:focus,
+.Customfilter .btn-remove:active {
+  background: var(--second-color) !important;
+  color: var(--main-color) !important;
+  outline: none !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+
+/*************alert*******************/
+svg {
+  width: 30px;
+  height: 25px;
+  margin-left: 20px;
+}

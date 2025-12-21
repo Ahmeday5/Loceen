@@ -1,0 +1,33 @@
+.cards .card {
+  background: var(--four-color);
+  border-radius: 8px;
+}
+
+.cards .card .card-body {
+  padding: 15px !important;
+}
+
+.cards .card .card-body .icon-container i {
+  color: var(--main-color);
+  font-size: 50px;
+}
+
+.cards .card .card-body .text-content {
+  color: var(--main-color);
+}
+
+.cards .card .card-title {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0.5px;
+}
+
+/**************/
+
+#expensesChart {
+  max-width: 320px;
+  max-height: 320px;
+  margin: 0 auto;
+  display: block;
+}

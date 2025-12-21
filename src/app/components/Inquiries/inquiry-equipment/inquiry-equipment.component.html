@@ -1,0 +1,192 @@
+<div class="work-hours mt-2">
+  <div class="container-fluid mb-3">
+    <!------------------------ table -------------------------------->
+    <div class="table-responsive custom-table">
+      <div class="row justify-content-between mt-5">
+        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12">
+          <div class="table-title">
+            <h1>الإستعلام عن المعدة</h1>
+          </div>
+        </div>
+
+        <div class="col-xl-7 col-lg-6 col-md-5 col-sm-4 col-12 mt-1">
+          <button type="button" class="btn Custombtn-filter" (click)="toggleFilter()">
+            <img src="/assets/img/filter.png" alt="">
+          </button>
+        </div>
+      </div>
+      <!-- Filter Modal -->
+      @if (showFilter) {
+      <div class="Customfilter"> <!-- أضف animation trigger -->
+        <form role="search">
+          <h3 class="mb-4">البحث</h3>
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group mb-4">
+                <label for="status" class="form-label">اسم صاحب المعدة</label>
+                <select dir="rtl" id="validationCustom04" class="form-select custom-select" name="foodType" required>
+                  <option value="" disabled selected>اختر</option>
+                  <option value="italian">عادل</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <button type="button" class="btn btn-filtering w-25">تصفية</button>
+            <button type="button" class="btn btn-remove w-25" (click)="onClear()">تفريغ</button>
+          </div>
+        </form>
+      </div>
+      }
+      <table class="table table-bordered custom-table-design text-center mt-3">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>اسم صاحب المعدة</th>
+            <th>رقم المعدة</th>
+            <th>نوع المعدة</th>
+            <th>تليفون صاحب المعدة</th>
+            <th>نوع الخدمة</th>
+            <th>عدد نقلات</th>
+            <th>أجرة الساعة</th>
+            <th>الأجمالي</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>شركة الامال</td>
+            <td>تركتر حفر</td>
+            <td>فتحي علي سيد</td>
+            <td>01128362014</td>
+            <td>نقل</td>
+            <td>10</td>
+            <td>15</td>
+            <td>1500</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الامال</td>
+            <td>تركتر حفر</td>
+            <td>فتحي علي سيد</td>
+            <td>01128362014</td>
+            <td>نقل</td>
+            <td>10</td>
+            <td>15</td>
+            <td>1500</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الامال</td>
+            <td>تركتر حفر</td>
+            <td>فتحي علي سيد</td>
+            <td>01128362014</td>
+            <td>نقل</td>
+            <td>10</td>
+            <td>15</td>
+            <td>1500</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الامال</td>
+            <td>تركتر حفر</td>
+            <td>فتحي علي سيد</td>
+            <td>01128362014</td>
+            <td>نقل</td>
+            <td>10</td>
+            <td>15</td>
+            <td>1500</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الامال</td>
+            <td>تركتر حفر</td>
+            <td>فتحي علي سيد</td>
+            <td>01128362014</td>
+            <td>نقل</td>
+            <td>10</td>
+            <td>15</td>
+            <td>1500</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الامال</td>
+            <td>تركتر حفر</td>
+            <td>فتحي علي سيد</td>
+            <td>01128362014</td>
+            <td>نقل</td>
+            <td>10</td>
+            <td>15</td>
+            <td>1500</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الامال</td>
+            <td>تركتر حفر</td>
+            <td>فتحي علي سيد</td>
+            <td>01128362014</td>
+            <td>نقل</td>
+            <td>10</td>
+            <td>15</td>
+            <td>1500</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الامال</td>
+            <td>تركتر حفر</td>
+            <td>فتحي علي سيد</td>
+            <td>01128362014</td>
+            <td>نقل</td>
+            <td>10</td>
+            <td>15</td>
+            <td>1500</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الامال</td>
+            <td>تركتر حفر</td>
+            <td>فتحي علي سيد</td>
+            <td>01128362014</td>
+            <td>نقل</td>
+            <td>10</td>
+            <td>15</td>
+            <td>1500</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الامال</td>
+            <td>تركتر حفر</td>
+            <td>فتحي علي سيد</td>
+            <td>01128362014</td>
+            <td>نقل</td>
+            <td>10</td>
+            <td>15</td>
+            <td>1500</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الامال</td>
+            <td>تركتر حفر</td>
+            <td>فتحي علي سيد</td>
+            <td>01128362014</td>
+            <td>نقل</td>
+            <td>10</td>
+            <td>15</td>
+            <td>1500</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>شركة الامال</td>
+            <td>تركتر حفر</td>
+            <td>فتحي علي سيد</td>
+            <td>01128362014</td>
+            <td>نقل</td>
+            <td>10</td>
+            <td>15</td>
+            <td>1500</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

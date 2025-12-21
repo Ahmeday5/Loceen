@@ -1,0 +1,166 @@
+<div class="work-hours mt-2">
+  <div class="container-fluid mb-3">
+    <!------------------------ table -------------------------------->
+    <div class="table-responsive custom-table">
+      <div class="row justify-content-between mt-5">
+        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12">
+          <div class="table-title">
+            <h1>الإستعلام عن حساب العمال</h1>
+          </div>
+        </div>
+
+        <div class="col-xl-7 col-lg-6 col-md-5 col-sm-4 col-12 mt-1">
+          <button type="button" class="btn Custombtn-filter" (click)="toggleFilter()">
+            <img src="/assets/img/filter.png" alt="">
+          </button>
+        </div>
+      </div>
+      <!-- Filter Modal -->
+      @if (showFilter) {
+      <div class="Customfilter"> <!-- أضف animation trigger -->
+        <form role="search">
+          <h3 class="mb-4">البحث</h3>
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group mb-4">
+                <label for="status" class="form-label">اسم الموظف</label>
+                <select dir="rtl" id="validationCustom04" class="form-select custom-select" name="foodType" required>
+                  <option value="" disabled selected>اختر</option>
+                  <option value="italian">عادل</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <button type="button" class="btn btn-filtering w-25">تصفية</button>
+            <button type="button" class="btn btn-remove w-25" (click)="onClear()">تفريغ</button>
+          </div>
+        </form>
+      </div>
+      }
+      <table class="table table-bordered custom-table-design text-center mt-3">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>اسم الموظف رباعي</th>
+            <th>تاريخ</th>
+            <th>إجمالي الراتب  الحضور</th>
+            <th>السلف</th>
+            <th>الباقي</th>
+            <th>تسديد دفعة</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>احمد علي محمد فتحي</td>
+            <td>2025-11-21</td>
+            <td>خمسة  الاف واربعة مائة وخمسين</td>
+            <td>1000</td>
+            <td>4450</td>
+            <td>سلفة بسبب مرض ابنه</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>احمد علي محمد فتحي</td>
+            <td>2025-11-21</td>
+            <td>خمسة  الاف واربعة مائة وخمسين</td>
+            <td>1000</td>
+            <td>4450</td>
+            <td>سلفة بسبب مرض ابنه</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>احمد علي محمد فتحي</td>
+            <td>2025-11-21</td>
+            <td>خمسة  الاف واربعة مائة وخمسين</td>
+            <td>1000</td>
+            <td>4450</td>
+            <td>سلفة بسبب مرض ابنه</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>احمد علي محمد فتحي</td>
+            <td>2025-11-21</td>
+            <td>خمسة  الاف واربعة مائة وخمسين</td>
+            <td>1000</td>
+            <td>4450</td>
+            <td>سلفة بسبب مرض ابنه</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>احمد علي محمد فتحي</td>
+            <td>2025-11-21</td>
+            <td>خمسة  الاف واربعة مائة وخمسين</td>
+            <td>1000</td>
+            <td>4450</td>
+            <td>سلفة بسبب مرض ابنه</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>احمد علي محمد فتحي</td>
+            <td>2025-11-21</td>
+            <td>خمسة  الاف واربعة مائة وخمسين</td>
+            <td>1000</td>
+            <td>4450</td>
+            <td>سلفة بسبب مرض ابنه</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>احمد علي محمد فتحي</td>
+            <td>2025-11-21</td>
+            <td>خمسة  الاف واربعة مائة وخمسين</td>
+            <td>1000</td>
+            <td>4450</td>
+            <td>سلفة بسبب مرض ابنه</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>احمد علي محمد فتحي</td>
+            <td>2025-11-21</td>
+            <td>خمسة  الاف واربعة مائة وخمسين</td>
+            <td>1000</td>
+            <td>4450</td>
+            <td>سلفة بسبب مرض ابنه</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>احمد علي محمد فتحي</td>
+            <td>2025-11-21</td>
+            <td>خمسة  الاف واربعة مائة وخمسين</td>
+            <td>1000</td>
+            <td>4450</td>
+            <td>سلفة بسبب مرض ابنه</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>احمد علي محمد فتحي</td>
+            <td>2025-11-21</td>
+            <td>خمسة  الاف واربعة مائة وخمسين</td>
+            <td>1000</td>
+            <td>4450</td>
+            <td>سلفة بسبب مرض ابنه</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>احمد علي محمد فتحي</td>
+            <td>2025-11-21</td>
+            <td>خمسة  الاف واربعة مائة وخمسين</td>
+            <td>1000</td>
+            <td>4450</td>
+            <td>سلفة بسبب مرض ابنه</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>احمد علي محمد فتحي</td>
+            <td>2025-11-21</td>
+            <td>خمسة  الاف واربعة مائة وخمسين</td>
+            <td>1000</td>
+            <td>4450</td>
+            <td>سلفة بسبب مرض ابنه</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

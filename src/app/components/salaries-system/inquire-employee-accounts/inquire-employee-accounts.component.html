@@ -1,0 +1,342 @@
+<div class="work-hours mt-2">
+  <div class="container-fluid mb-3">
+    <!-- form -->
+    <form class="mt-3">
+      <div class="row">
+        <div class="col-md-4 mt-2">
+          <div class="form-section">
+            <label for="exampleFormControlInput1" class="form-label">اسم العامل</label>
+            <select dir="rtl" id="validationCustom04" class="form-select custom-select" name="foodType" required>
+              <option value="" disabled selected>اختر</option>
+              <!-- أضف خيارات تانية لو عايز -->
+              <option value="italian">عادل</option>
+              <option value="arabic">احمد</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4 mt-2">
+          <div class="form-section">
+            <label for="exampleFormControlInput1" class="form-label">تاريخ البدء</label>
+            <input type="date" class="form-control" id="exampleFormControlInput1" required>
+          </div>
+        </div>
+        <div class="col-md-4 mt-2">
+          <div class="form-section">
+            <label for="exampleFormControlInput1" class="form-label">تاريخ الانتهاء</label>
+            <input type="date" class="form-control" id="exampleFormControlInput1" required>
+          </div>
+        </div>
+        <div class="col-md-4 mt-2">
+          <div class="form-section">
+            <label for="exampleFormControlInput1" class="form-label">أعمال اضافية</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" required>
+          </div>
+        </div>
+        <div class="col-md-4 mt-2">
+          <div class="form-section">
+            <label for="exampleFormControlInput1" class="form-label">نظام العمل</label>
+            <select dir="rtl" id="validationCustom04" class="form-select custom-select" name="foodType" required>
+              <option value="" disabled selected>اختر</option>
+              <!-- أضف خيارات تانية لو عايز -->
+              <option value="italian">نظام شهري - 26 يوم</option>
+              <option value="arabic">نظام شهري - 26 يوم</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4 mt-2">
+          <div class="form-section">
+            <label for="exampleFormControlInput1" class="form-label">قيمة المرتب</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-12">
+          <div class="btns d-flex justify-content-center">
+            <button class="btn btn-save"> حفظ البيانات</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+
+    <!------------------------ table -------------------------------->
+    <div class="table-responsive custom-table">
+      <div class="row justify-content-between mt-5">
+        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12">
+          <div class="table-title">
+            <h1>الإستعلام عن الحساب</h1>
+          </div>
+        </div>
+
+        <div class="col-xl-7 col-lg-6 col-md-5 col-sm-4 col-12 mt-1">
+          <button type="button" class="btn Custombtn-filter" (click)="toggleFilter()">
+            <img src="/assets/img/filter.png" alt="">
+          </button>
+        </div>
+      </div>
+      <!-- Filter Modal -->
+      @if (showFilter) {
+      <div class="Customfilter"> <!-- أضف animation trigger -->
+        <form role="search">
+          <h3 class="mb-4">البحث</h3>
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group mb-4">
+                <label for="status" class="form-label">اسم العامل</label>
+                <select dir="rtl" id="validationCustom04" class="form-select custom-select" name="foodType" required>
+                  <option value="" disabled selected>اختر</option>
+                  <option value="italian">عادل</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <button type="button" class="btn btn-filtering w-25">تصفية</button>
+            <button type="button" class="btn btn-remove w-25" (click)="onClear()">تفريغ</button>
+          </div>
+        </form>
+      </div>
+      }
+      <table class="table table-bordered custom-table-design text-center mt-3">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>اسم العامل</th>
+            <th>تاريخ البدء</th>
+            <th>تاريخ الانتهاء</th>
+            <th>المرتب</th>
+            <th>أعمال اضافية</th>
+            <th>العلاوة</th>
+            <th> اجمالي مستحقاته</th>
+            <th>تعديل</th>
+            <th>حذف</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>عادل</td>
+            <td>2025/11/1</td>
+            <td>2025/11/1</td>
+            <td>50000</td>
+            <td>كيلو جرام</td>
+            <td>35.25</td>
+            <td>35.252.120</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>عادل</td>
+            <td>2025/11/1</td>
+            <td>2025/11/1</td>
+            <td>50000</td>
+            <td>كيلو جرام</td>
+            <td>35.25</td>
+            <td>35.252.120</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>عادل</td>
+            <td>2025/11/1</td>
+            <td>2025/11/1</td>
+            <td>50000</td>
+            <td>كيلو جرام</td>
+            <td>35.25</td>
+            <td>35.252.120</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>عادل</td>
+            <td>2025/11/1</td>
+            <td>2025/11/1</td>
+            <td>50000</td>
+            <td>كيلو جرام</td>
+            <td>35.25</td>
+            <td>35.252.120</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>عادل</td>
+            <td>2025/11/1</td>
+            <td>2025/11/1</td>
+            <td>50000</td>
+            <td>كيلو جرام</td>
+            <td>35.25</td>
+            <td>35.252.120</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>عادل</td>
+            <td>2025/11/1</td>
+            <td>2025/11/1</td>
+            <td>50000</td>
+            <td>كيلو جرام</td>
+            <td>35.25</td>
+            <td>35.252.120</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>عادل</td>
+            <td>2025/11/1</td>
+            <td>2025/11/1</td>
+            <td>50000</td>
+            <td>كيلو جرام</td>
+            <td>35.25</td>
+            <td>35.252.120</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>عادل</td>
+            <td>2025/11/1</td>
+            <td>2025/11/1</td>
+            <td>50000</td>
+            <td>كيلو جرام</td>
+            <td>35.25</td>
+            <td>35.252.120</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>عادل</td>
+            <td>2025/11/1</td>
+            <td>2025/11/1</td>
+            <td>50000</td>
+            <td>كيلو جرام</td>
+            <td>35.25</td>
+            <td>35.252.120</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>عادل</td>
+            <td>2025/11/1</td>
+            <td>2025/11/1</td>
+            <td>50000</td>
+            <td>كيلو جرام</td>
+            <td>35.25</td>
+            <td>35.252.120</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>عادل</td>
+            <td>2025/11/1</td>
+            <td>2025/11/1</td>
+            <td>50000</td>
+            <td>كيلو جرام</td>
+            <td>35.25</td>
+            <td>35.252.120</td>
+            <td>
+              <button class="btn btn-table-edit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
