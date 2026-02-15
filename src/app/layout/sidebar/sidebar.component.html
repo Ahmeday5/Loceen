@@ -1,10 +1,10 @@
-<button class="btn btn-primary toggle-btn" [ngClass]="{'toggle-btn-open': isSidebarOpen}" (click)="toggleSidebar()">
+<button class="btn btn-primary toggle-btn" [ngClass]="{'toggle-btn-open': isSidebarOpen}"
+  (click)="toggleMobileSidebar()">
   <i [class]="isSidebarOpen ? 'fa-solid fa-times' : 'fa-solid fa-bars'"></i>
 </button>
 
 <!-- حاوية الـ Sidebar -->
-<aside class="sidebar" [ngClass]="{'sidebar-open': isSidebarOpen , 'sidebar-collapsed': isCollapsed && isSidebarOpen}"
-  dir="rtl">
+<aside class="sidebar" [class.sidebar-open]="isSidebarOpen" [class.sidebar-mini]="isCollapsed" dir="rtl">
   <nav class="sidebar-nav" id="sidebar">
     <!-- رأس الـ Sidebar -->
     <div class="sidebar-header d-flex">
@@ -15,8 +15,13 @@
       </div>
 
       <!-- زر التصغير / التكبير -->
-      <div class="collapse-toggle ms-2" (click)="toggleCollapse()">
-        <i class="fa-solid" [class.fa-angles-right]="!isCollapsed" [class.fa-angles-left]="isCollapsed"></i>
+      <div class="collapse-toggle ms-2">
+        <button class="btn desktop-minimize-btn" [class.minimized]="isCollapsed" (click)="toggleCollapse()"
+          title="{{ isCollapsed ? 'تكبير القائمة' : 'تصغير القائمة' }}">
+
+          <!-- السطر ده هو اللي هيتم تعديله -->
+          <i class="fa-solid fa-angles-right" [class.fa-angles-left]="isCollapsed"></i>
+        </button>
       </div>
     </div>
 
@@ -61,9 +66,14 @@
               </div>
             </a>
             }
-
           </li>
           }
+          <li class="nav-item">
+            <a style="cursor: pointer;" class="nav-link" (click)="logout()">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <h6>تسجيل الخروج</h6>
+            </a>
+          </li>
         </ul>
       </div>
       }

@@ -29,7 +29,7 @@ export class DashboardComponent implements AfterViewInit {
           {
             label: 'المبيعات',
             data: [65, 82, 71, 108, 95, 112, 129, 118, 98, 135, 122, 148],
-            backgroundColor: '#f4982c',
+            backgroundColor: '#ca6702',
             borderRadius: 8,
             borderSkipped: false,
           },
@@ -67,7 +67,7 @@ export class DashboardComponent implements AfterViewInit {
         labels: ['مرتبات', 'إيجار', 'كهرباء', 'تسويق', 'صيانة', 'أخرى'],
         datasets: [{
           data: [42, 18, 15, 12, 28, 9],
-          backgroundColor: ['#e74c3c', '#3498db', '#f39c12', '#9b59b6', '#1abc9c', '#95a5a6'],
+          backgroundColor: ['#e74c3c', '#3498db', '#ca6702', '#9b59b6', '#1abc9c', '#95a5a6'],
           borderColor: '#fff',
           borderWidth: 3,
           hoverOffset: 15

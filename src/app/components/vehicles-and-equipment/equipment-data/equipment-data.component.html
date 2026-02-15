@@ -1,0 +1,342 @@
+<div class="EquipmentData-Inquiry mt-5">
+  <div class="container-fluid mb-3">
+    <!-- title -->
+    <div class="row justify-content-between">
+      <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12">
+        <div class="EquipmentData-title">
+          <h1> <i class="fa-solid fa-handshake mt-1"></i> إضافة معدة </h1>
+        </div>
+      </div>
+    </div>
+    <!-- SVG Icons -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+      <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+      </symbol>
+      <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+          d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+      </symbol>
+    </svg>
+
+    <!-- Success and Error Messages -->
+    @if (successMessage) {
+    <div class="alert alert-success d-flex align-items-center mt-4" role="alert">
+      <svg class="bi flex-shrink-0 me-2 ms-3" width="24" height="24" role="img" aria-label="Success:">
+        <use xlink:href="#check-circle-fill" />
+      </svg>
+      <div>{{ successMessage }}</div>
+    </div>
+    }
+    @if (errorMessage) {
+    <div class="alert alert-danger d-flex align-items-center mt-4" role="alert">
+      <svg class="bi flex-shrink-0 me-2 ms-3" width="24" height="24" role="img" aria-label="Danger:">
+        <use xlink:href="#exclamation-triangle-fill" />
+      </svg>
+      <div>{{ errorMessage }}</div>
+    </div>
+    }
+
+    <!-- form -->
+    <form #form="ngForm" (ngSubmit)="form.valid && handleSubmit()" class="mt-5 needs-validation" novalidate>
+
+      <div class="row g-3">
+        <!-- رقم المعدة -->
+        <div class="col-md-4">
+          <label for="equipmentNumber" class="form-label">رقم المعدة<span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="equipmentNumber" name="equipmentNumber"
+            [(ngModel)]="equipment.equipmentNumber" #equipmentNumber="ngModel" required [ngClass]="{
+    'is-invalid': form.submitted && equipmentNumber.invalid,
+    'is-valid': form.submitted && equipmentNumber.valid
+  }">
+          <div class="invalid-feedback">
+            @if (equipmentNumber.errors?.['required']) { يرجى إدخال رقم المعدة }
+          </div>
+        </div>
+
+        <!-- نوع المعدة -->
+        <div class="col-md-4">
+          <label for="equipmentType" class="form-label">نوع المعدة<span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="equipmentType" name="equipmentType"
+            [(ngModel)]="equipment.equipmentType" #equipmentType="ngModel" required minlength="3" [ngClass]="{
+    'is-invalid': form.submitted && equipmentType.invalid,
+    'is-valid': form.submitted && equipmentType.valid
+  }">
+          <div class="invalid-feedback">
+            @if (equipmentType.errors?.['required']) { يرجى إدخال الاسم }
+            @else if (equipmentType .errors?.['minlength']) { نوع المعدة يجب ألا يقل عن 3 أحرف }
+          </div>
+        </div>
+
+        <!-- اسم صاحب المعدة (Select) -->
+        <div class="col-md-4">
+          <label class="form-label">نظام العمل <span class="text-danger">*</span></label>
+          <select class="form-control" id="workSystem" name="workSystem" [(ngModel)]="equipment.workSystem"
+            #workSystem="ngModel" required
+            [ngClass]="{'is-invalid': form.submitted && workSystem.invalid, 'is-valid': form.submitted && workSystem.valid}">
+            <option value="" disabled selected>اختر نظام العمل</option>
+            <option value="الساعة">الساعة</option>
+            <option value="النقلة">النقلة</option>
+            <option value="الشهر">الشهر</option>
+          </select>
+          <div class="invalid-feedback">يرجى اختيار نظام العمل</div>
+        </div>
+
+        <!-- الاسم -->
+        <div class="col-md-4">
+          <label for="equipmentOwnerName" class="form-label">اسم صاحب المعدة<span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="equipmentOwnerName" name="equipmentOwnerName"
+            [(ngModel)]="equipment.equipmentOwnerName" #equipmentOwnerName="ngModel" required minlength="3" [ngClass]="{
+    'is-invalid': form.submitted && equipmentOwnerName.invalid,
+    'is-valid': form.submitted && equipmentOwnerName.valid
+  }">
+          <div class="invalid-feedback">
+            @if (equipmentOwnerName.errors?.['required']) { يرجى إدخال الاسم }
+            @else if (equipmentOwnerName .errors?.['minlength']) { اسم صاحب المعدة يجب ألا يقل عن 3 أحرف }
+          </div>
+        </div>
+
+        <!-- رقم الهاتف -->
+        <div class="col-md-4">
+          <label for="equipmentOwnerPhone" class="form-label">رقم تليفون صاحب المعدة<span
+              class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="equipmentOwnerPhone" name="equipmentOwnerPhone"
+            [(ngModel)]="equipment.equipmentOwnerPhone" #equipmentOwnerPhone="ngModel" required
+            pattern="^(\+?\d{10,15})$" [ngClass]="{
+    'is-invalid': form.submitted && equipmentOwnerPhone.invalid,
+    'is-valid': form.submitted && equipmentOwnerPhone.valid
+  }">
+          <div class="invalid-feedback">
+            @if (equipmentOwnerPhone.errors?.['required']) { يرجى إدخال رقم التليفون }
+            @else if (equipmentOwnerPhone.errors?.['pattern']) { رقم تليفون صاحب المعدة يجب ألا يقل عن 10 ارقام }
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-12">
+          <div class="btns d-flex justify-content-center">
+            <button type="submit" class="btn btn-save">
+              @if (isLoading) {
+              <span class="spinner-border spinner-border-sm me-2"></span>
+              }حفظ البيانات</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Modal تعديل معدة -->
+    @if (showEditModal) {
+    <div class="modal fade show d-block" tabindex="-1" style="background: rgba(0,0,0,0.5);">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              <i class="fa-solid fa-handshake mt-1"></i> تعديل بيانات المعدة
+            </h5>
+            <button type="button" class="btn-close" (click)="showEditModal = false"></button>
+          </div>
+          <div class="modal-body">
+            <form #editForm="ngForm" (ngSubmit)="editForm.valid && handleUpdateEquipment()" class="needs-validation"
+              novalidate>
+              <div class="row g-3">
+                <!-- رقم المعدة -->
+                <div class="col-md-6">
+                  <label for="equipmentNumber" class="form-label">رقم المعدة<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="equipmentNumber" name="equipmentNumber"
+                    [(ngModel)]="editEquipment.equipmentNumber" #equipmentNumber="ngModel" required [ngClass]="{
+    'is-invalid': form.submitted && equipmentNumber.invalid,
+    'is-valid': form.submitted && equipmentNumber.valid
+  }">
+                  <div class="invalid-feedback">
+                    @if (equipmentNumber.errors?.['required']) { يرجى إدخال رقم المعدة }
+                  </div>
+                </div>
+
+                <!-- نوع المعدة -->
+                <div class="col-md-6">
+                  <label for="equipmentType" class="form-label">نوع المعدة<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="equipmentType" name="equipmentType"
+                    [(ngModel)]="editEquipment.equipmentType" #equipmentType="ngModel" required minlength="3" [ngClass]="{
+    'is-invalid': form.submitted && equipmentType.invalid,
+    'is-valid': form.submitted && equipmentType.valid
+  }">
+                  <div class="invalid-feedback">
+                    @if (equipmentType.errors?.['required']) { يرجى إدخال الاسم }
+                    @else if (equipmentType .errors?.['minlength']) { نوع المعدة يجب ألا يقل عن 3 أحرف }
+                  </div>
+                </div>
+
+                <!-- اسم صاحب المعدة (Select) -->
+                <div class="col-md-6">
+                  <label class="form-label">نظام العمل <span class="text-danger">*</span></label>
+                  <select class="form-control" id="workSystem" name="workSystem" [(ngModel)]="editEquipment.workSystem"
+                    #workSystem="ngModel" required
+                    [ngClass]="{'is-invalid': form.submitted && workSystem.invalid, 'is-valid': form.submitted && workSystem.valid}">
+                    <option value="" disabled selected>اختر نظام العمل</option>
+                    <option value="الساعة">الساعة</option>
+                    <option value="النقلة">النقلة</option>
+                    <option value="الشهر">الشهر</option>
+                  </select>
+                  <div class="invalid-feedback">يرجى اختيار نظام العمل</div>
+                </div>
+
+                <!-- الاسم -->
+                <div class="col-md-6">
+                  <label for="equipmentOwnerName" class="form-label">اسم صاحب المعدة<span
+                      class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="equipmentOwnerName" name="equipmentOwnerName"
+                    [(ngModel)]="editEquipment.equipmentOwnerName" #equipmentOwnerName="ngModel" required minlength="3"
+                    [ngClass]="{
+    'is-invalid': form.submitted && equipmentOwnerName.invalid,
+    'is-valid': form.submitted && equipmentOwnerName.valid
+  }">
+                  <div class="invalid-feedback">
+                    @if (equipmentOwnerName.errors?.['required']) { يرجى إدخال الاسم }
+                    @else if (equipmentOwnerName .errors?.['minlength']) { اسم صاحب المعدة يجب ألا يقل عن 3 أحرف }
+                  </div>
+                </div>
+
+                <!-- رقم الهاتف -->
+                <div class="col-md-6">
+                  <label for="equipmentOwnerPhone" class="form-label">رقم تليفون صاحب المعدة<span
+                      class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="equipmentOwnerPhone" name="equipmentOwnerPhone"
+                    [(ngModel)]="editEquipment.equipmentOwnerPhone" #equipmentOwnerPhone="ngModel" required
+                    pattern="^(\+?\d{10,15})$" [ngClass]="{
+    'is-invalid': form.submitted && equipmentOwnerPhone.invalid,
+    'is-valid': form.submitted && equipmentOwnerPhone.valid
+  }">
+                  <div class="invalid-feedback">
+                    @if (equipmentOwnerPhone.errors?.['required']) { يرجى إدخال رقم التليفون }
+                    @else if (equipmentOwnerPhone .errors?.['minlength']) { رقم تليفون صاحب المعدة يجب ألا يقل عن 10
+                    ارقام }
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="showEditModal = false">إلغاء</button>
+                <button type="submit" class="btn btn-save" [disabled]="isLoading">
+                  @if (isLoading) {
+                  <span class="spinner-border spinner-border-sm me-2"></span>
+                  }
+                  حفظ التعديلات
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+
+
+    <!------------------------ table -------------------------------->
+
+    <div class="row justify-content-between mt-4">
+      <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12">
+        <div class="table-title">
+          <h1>استعلام عن المعدة</h1>
+        </div>
+      </div>
+      <div class="col-md-6 d-flex gap-2 mt-2">
+        <button type="button" class="btn Custombtn-filter" (click)="toggleFilter()">
+          <i class="fa-solid fa-filter"></i>
+          <h6>فلترة</h6>
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      @if (showFilter) {
+      <div class="filter mt-3">
+        <form [formGroup]="filterForm">
+          <h3 class="mb-4">فلترة</h3>
+
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label class="form-label">رقم المعدة</label>
+              <input formControlName="EquipmentNumber" class="form-control" type="search"
+                placeholder="ابحث برقم المعدة..." />
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">اسم صاحب المعدة</label>
+              <select class="form-control" id="EquipmentOwnerName" name="EquipmentOwnerName"
+                formControlName="EquipmentOwnerName">
+                <option value="" disabled selected>اختر نظام العمل</option>
+                <option value="الساعة">الساعة</option>
+                <option value="النقلة">النقلة</option>
+                <option value="الشهر">الشهر</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label"> اسم صاحب المعدة</label>
+              <input formControlName="EquipmentOwnerName" class="form-control" type="search"
+                placeholder="ابحث باسم صاحب المعدة..." />
+            </div>
+          </div>
+
+          <div class="row justify-content-center gap-2 mt-3">
+            <button type="button" class="btn btn-remove w-50" (click)="onClear()">تفريغ</button>
+          </div>
+        </form>
+      </div>
+      }
+    </div>
+    <div class="table-responsive custom-table mt-3">
+      @if (Loading) {
+      <div
+        class="position-absolute top-50 start-50 translate-middle z-3 bg-white bg-opacity-75 w-100 h-100 d-flex align-items-center justify-content-center rounded">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+          <span class="visually-hidden">جاري التحميل...</span>
+        </div>
+      </div>
+      }
+      <table class="table table-bordered custom-table-design text-center">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>رقم المعدة</th>
+            <th>نوع المعدة</th>
+            <th>نظام العمل</th>
+            <th>اسم صاحب المعدة</th>
+            <th>رقم تليفون صاحب المعدة</th>
+            <th>تعديل</th>
+            <th>حذف</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (equipment of allEquipment; track equipment.id; let i = $index) {
+          <tr>
+            <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+            <td>{{ equipment.equipmentNumber }}</td>
+            <td>{{ equipment.equipmentType }}</td>
+            <td>{{ equipment.workSystem }}</td>
+            <td>{{ equipment.equipmentOwnerName }}</td>
+            <td>{{ equipment.equipmentOwnerPhone }}</td>
+            <td>
+              <button class="btn btn-table-edit" (click)="loadEquipmentForEdit(equipment.id)">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete" (click)="deletedEquipment(equipment.id)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          }
+          @empty {
+          <tr>
+            <td colspan="11" class="text-muted py-5">لا يوجد بيانات لعرضهم</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <app-pagination [currentPage]="currentPage" [totalPages]="totalPages" [windowSize]="1"
+      (pageChange)="onPageChange($event)"></app-pagination>
+  </div>
+</div>

@@ -14,3 +14,54 @@
   font-weight: bold;
   display: inline-block;
 }
+
+/***************************filtering**************************/
+
+.Custombtn-filter {
+  background: var(--four-color) !important;
+  color: var(--main-color) !important;
+}
+
+.Custombtn-filter h6 {
+  display: inline-block;
+  margin-right: 5px;
+  color: var(--main-color);
+  font-weight: bold;
+}
+
+.filter {
+  position: relative; /* بدل fixed */
+  background: var(--third-color);
+  color: var(--four-color);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1050;
+}
+
+/* Button transitions */
+.filter .btn-filtering,
+.filter .btn-remove {
+  transition: transform 0.2s ease, box-shadow 0.2s ease; // scale على hover
+}
+
+.filter .btn-remove {
+  background: var(--second-color);
+  color: var(--main-color);
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 7px;
+}
+
+.filter .btn-remove:hover,
+.filter .btn-remove:focus,
+.filter .btn-remove:active {
+  background: var(--second-color);
+  color: var(--main-color);
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}

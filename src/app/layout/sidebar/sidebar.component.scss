@@ -1,52 +1,60 @@
-.sidebar-collapsed {
-  width: 70px !important;
-  min-width: 70px !important;
-  max-width: 70px !important;
-
-  .sidebar-header {
-    justify-content: center;
-  }
-
-  .search-container {
-    display: none !important;
-  }
-
-  .nav-link {
-    justify-content: center;
-    padding: 12px !important;
-
-    span {
-      display: none !important;
-    }
-
-    .submenu-arrow {
-      display: none !important;
-    }
-  }
-
-  // الأيقونة بس تبان
-  .icon-text i:first-child {
-    margin: 0 !important;
-    font-size: 18px;
-  }
+.sidebar.sidebar-mini {
+  width: 70px;
+  min-width: 70px;
+  max-width: 70px;
 }
 
-.collapse-toggle i {
-  margin-top: -15px;
+.sidebar.sidebar-mini .nav-link span {
+  display: none; /* إخفاء النصوص */
 }
 
-/* زر التصغير/التكبير داخل الـ header */
-.collapse-toggle {
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-  color: var(--five-color);
+.sidebar.sidebar-mini .nav-link {
+  justify-content: center;
+  padding: 15px 0;
+}
+
+.sidebar.sidebar-mini .menu-section {
+  padding-left: 5px;
+}
+
+.sidebar.sidebar-mini .icon-text {
+  justify-content: center;
+}
+
+.sidebar.sidebar-mini .sidebar-header {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.sidebar.sidebar-mini .logo img {
+  width: 50px;
+  margin: 0 auto;
+  display: block;
+}
+
+.sidebar.sidebar-mini .search-container {
+  display: none;
+}
+
+.desktop-minimize-btn {
+  display: none;
+  z-index: 1100;
+  color: var(--second-color);
+  width: 40px;
+  height: 40px;
   font-size: 18px;
+  transition: all 0.3s ease;
+}
 
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
+.desktop-minimize-btn:focus {
+  border: none;
+  box-shadow: none;
+  background: var(--second-color);
+  background: none;
+}
+
+.desktop-minimize-btn.minimized {
+  right: 80px; /* بجانب السايدبار المصغر */
 }
 
 /* تنسيق حاوية الـ Sidebar */
@@ -55,7 +63,7 @@
   height: 100vh;
   width: 17vw;
   max-width: 250px;
-  min-width: 180px;
+  min-width: 250px;
   position: fixed;
   top: 0;
   right: 0;
@@ -86,6 +94,8 @@
   width: 80%;
   position: relative;
   margin-right: 10px;
+  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .sidebar-header .search-container .form-control {
@@ -228,11 +238,19 @@
     width: 80%;
   }
 
-  .collapse-toggle {
-    display: none; /* في الموبايل ما ينفعش نصغر أكتر */
+  .desktop-minimize-btn {
+    display: none !important; /* زر التصغير مخفي في الموبايل */
   }
+}
 
-  .sidebar-collapsed {
-    width: 100vw !important;
+@media (min-width: 993px) {
+  .toggle-btn {
+    display: none !important; /* زر الموبايل مخفي في الديسكتوب */
+  }
+  .desktop-minimize-btn {
+    display: block; /* زر التصغير يظهر في الديسكتوب فقط */
+  }
+  .sidebar {
+    right: 0; /* السايدبار مفتوح دائمًا في الديسكتوب */
   }
 }

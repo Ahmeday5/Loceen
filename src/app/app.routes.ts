@@ -1,4 +1,37 @@
-import { Routes } from '@angular/router';
+import { CanActivateFn, Router, Routes } from '@angular/router';
+import { AuthService } from './services/auth.service';
+import { inject } from '@angular/core';
+import { map } from 'rxjs';
+
+export const canActivate: CanActivateFn = (route, state) => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+
+  return authService.isLoggedIn$.pipe(
+    map((isLoggedIn) => {
+      if (isLoggedIn) {
+        return true; // مسجل → خليه يكمل
+      } else {
+        return router.createUrlTree(['/']); // مش مسجل → ارجع على اللوجن (الـ root)
+      }
+    })
+  );
+};
+
+export const canActivateRole: CanActivateFn = (route, state) => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+  const allowedRoles = (route.data['allowedRoles'] as string[]) || [];
+
+  return authService.role$.pipe(
+    map((role) => {
+      if (!role || !allowedRoles.some((r) => role.includes(r))) {
+        return router.createUrlTree(['dashboard']);
+      }
+      return true;
+    })
+  );
+};
 
 export const routes: Routes = [
   {
@@ -8,6 +41,17 @@ export const routes: Routes = [
         (m) => m.LoginComponent
       ),
     title: 'تسجيل الدخول',
+    canActivate: [
+      () => {
+        const authService = inject(AuthService);
+        const router = inject(Router);
+        return authService.isLoggedIn$.pipe(
+          map((isLoggedIn) =>
+            isLoggedIn ? router.createUrlTree(['/dashboard']) : true
+          )
+        );
+      },
+    ],
   },
   {
     path: 'dashboard',
@@ -16,6 +60,7 @@ export const routes: Routes = [
         (m) => m.DashboardComponent
       ),
     title: 'اللوحة الرئيسية',
+    canActivate: [canActivate],
   },
   {
     path: 'add-sale',
@@ -134,6 +179,14 @@ export const routes: Routes = [
     ],
   },
   {
+    path: 'Employee-Advance',
+    loadComponent: () =>
+      import(
+        './components/EmployeeAdvance/employee-advance/employee-advance.component'
+      ).then((m) => m.EmployeeAdvanceComponent),
+    title: 'فترة العمل',
+  },
+  {
     path: 'Inquir-Equipment',
     loadComponent: () =>
       import(
@@ -142,11 +195,27 @@ export const routes: Routes = [
     title: 'الاستعلام عن المعدة',
   },
   {
+    path: 'EquipmentData',
+    loadComponent: () =>
+      import(
+        './components/vehicles-and-equipment/equipment-data/equipment-data.component'
+      ).then((m) => m.EquipmentDataComponent),
+    title: 'بيانات المعدة',
+  },
+  {
     path: 'Inquiry-EmployeeAccounts',
     loadComponent: () =>
       import(
         './components/Inquiries/inquiry-about-employee-eccounts/inquiry-about-employee-eccounts.component'
       ).then((m) => m.InquiryAboutEmployeeEccountsComponent),
+    title: 'الاستعلام عن حساب العمال',
+  },
+  {
+    path: 'appUser',
+    loadComponent: () =>
+      import('./components/app-user/app-user.component').then(
+        (m) => m.AppUserComponent
+      ),
     title: 'الاستعلام عن حساب العمال',
   },
   {
@@ -200,4 +269,5 @@ export const routes: Routes = [
       //{ path: '', redirectTo: 'Working-Hours', pathMatch: 'full' },
     ],
   },
+  { path: '**', redirectTo: '' },
 ];

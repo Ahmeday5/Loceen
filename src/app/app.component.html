@@ -4,11 +4,11 @@
   <div class="page-bg"></div>
   <div class="page-bg-overlay"></div>
 
-  @if (isLoggedIn) {
+  @if (isLoggedIn$ | async) {
   <app-sidebar></app-sidebar>
   }
 
-  <main class="content" [ngClass]="{'full-width': !isLoggedIn}">
+  <main class="content" [ngClass]="{'full-width': !(isLoggedIn$ | async)}">
     <router-outlet></router-outlet>
   </main>
 </div>

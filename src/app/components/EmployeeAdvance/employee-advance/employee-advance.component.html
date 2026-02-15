@@ -1,0 +1,310 @@
+<div class="work-hours mt-2">
+  <div class="container-fluid mb-3">
+    <!-- title -->
+    <div class="row justify-content-between">
+      <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12">
+        <div class="SalesInquiry-title">
+          <h1> <i class="fa-solid fa-handshake mt-1"></i> تسجيل فترة العمل </h1>
+        </div>
+      </div>
+    </div>
+    <!-- SVG Icons -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+      <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+      </symbol>
+      <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+          d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+      </symbol>
+    </svg>
+
+    <!-- Success and Error Messages -->
+    @if (successMessage) {
+    <div class="alert alert-success d-flex align-items-center mt-4" role="alert">
+      <svg class="bi flex-shrink-0 me-2 ms-3" width="24" height="24">
+        <use xlink:href="#check-circle-fill" />
+      </svg>
+      <div>{{ successMessage }}</div>
+    </div>
+    }
+    @if (errorMessage) {
+    <div class="alert alert-danger d-flex align-items-center mt-4" role="alert">
+      <svg class="bi flex-shrink-0 me-2 ms-3" width="24" height="24">
+        <use xlink:href="#exclamation-triangle-fill" />
+      </svg>
+      <div>{{ errorMessage }}</div>
+    </div>
+    }
+
+    <!-- form -->
+    <form #form="ngForm" (ngSubmit)="form.valid && handleSubmit()" class="mt-5 needs-validation" novalidate>
+      <div class="row">
+        <div class="col-md-4 mt-2">
+          <div class="form-section">
+            <label for="employeeId" class="form-label">اسم العامل <span class="text-danger">*</span></label>
+            <select dir="rtl" id="employeeId" class="form-select custom-select" name="employeeId"
+              [(ngModel)]="workingPeriod.employeeId" #equipmentSelect="ngModel" required
+              [ngClass]="{'is-invalid': form.submitted && equipmentSelect.invalid, 'is-valid': form.submitted && equipmentSelect.valid}">
+              <option [value]="null" disabled selected>اختر اسم العامل</option>
+              @for (emp of allEmployeesMain; track emp.id) {
+              <option [value]="emp.id">{{ emp.name }}</option>
+              }
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4 mt-2">
+          <div class="form-section">
+            <label for="startDate" class="form-label">تاريخ البدء <span class="text-danger">*</span></label>
+            <input type="date" class="form-control" id="startDate" name="startDate"
+              [(ngModel)]="workingPeriod.startDate" #startDate="ngModel" required
+              [ngClass]="{'is-invalid': form.submitted && startDate.invalid, 'is-valid': form.submitted && startDate.valid}">
+            <div class="invalid-feedback">يرجى إدخال التاريخ</div>
+          </div>
+        </div>
+        <div class="col-md-4 mt-2">
+          <div class="form-section">
+            <label for="endDate" class="form-label">تاريخ النهاية <span class="text-danger">*</span></label>
+            <input type="date" class="form-control" id="endDate" name="endDate" [(ngModel)]="workingPeriod.endDate"
+              #endDate="ngModel" required
+              [ngClass]="{'is-invalid': form.submitted && endDate.invalid, 'is-valid': form.submitted && endDate.valid}">
+            <div class="invalid-feedback">يرجى إدخال التاريخ</div>
+          </div>
+        </div>
+        <div class="col-md-4 mt-2">
+          <div class="form-section">
+            <label for="extraWork" class="form-label">أعمال اضافية</label>
+            <input type="number" class="form-control" id="extraWork" name="extraWork"
+              [(ngModel)]="workingPeriod.extraWork" #extraWork="ngModel" required
+              [ngClass]="{'is-invalid': form.submitted && extraWork.invalid, 'is-valid': form.submitted && extraWork.valid}">
+            <div class="invalid-feedback">يرجى إدخال أعمال اضافية</div>
+          </div>
+        </div>
+        <div class="col-md-4 mt-2">
+          <div class="form-section">
+            <label for="workSystem" class="form-label">نظام العمل</label>
+            <input type="text" class="form-control" id="workSystem" name="workSystem"
+              [(ngModel)]="workingPeriod.workSystem" #workSystem="ngModel" required
+              [ngClass]="{'is-invalid': form.submitted && workSystem.invalid, 'is-valid': form.submitted && workSystem.valid}">
+            <div class="invalid-feedback">يرجى إدخال نظام العمل</div>
+          </div>
+        </div>
+        <div class="col-md-4 mt-2">
+          <div class="form-section">
+            <label for="salary" class="form-label">قيمة المرتب</label>
+            <input type="number" class="form-control" id="salary" name="salary" [(ngModel)]="workingPeriod.salary"
+              #salary="ngModel" required
+              [ngClass]="{'is-invalid': form.submitted && salary.invalid, 'is-valid': form.submitted && salary.valid}">
+            <div class="invalid-feedback">يرجى إدخال قيمة المرتب</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-12">
+          <div class="btns d-flex justify-content-center">
+            <button type="submit" class="btn btn-save" [disabled]="isLoading">
+              @if (isLoading) {
+              <span class="spinner-border spinner-border-sm me-2"></span>
+              }حفظ البيانات</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Modal تعديل معدة -->
+    @if (showEditModal) {
+    <div class="modal fade show d-block" tabindex="-1" style="background: rgba(0,0,0,0.5);">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              <i class="fa-solid fa-handshake mt-1"></i> تعديل بيانات ساعات
+            </h5>
+            <button type="button" class="btn-close" (click)="showEditModal = false"></button>
+          </div>
+          <div class="modal-body">
+            <form #editForm="ngForm" (ngSubmit)="editForm.valid && handleUpdateworkingPeriod()" class="needs-validation"
+              novalidate>
+
+              <div class="row">
+                <div class="col-md-6 mt-2">
+                  <div class="form-section">
+                    <label for="employeeId" class="form-label">اسم العامل <span class="text-danger">*</span></label>
+                    <select dir="rtl" id="employeeId" class="form-select custom-select" name="employeeId"
+                      [(ngModel)]="editWorkingPeriod.employeeId" #editWorkingPeriods="ngModel" required
+                      [ngClass]="{'is-invalid': form.submitted && editWorkingPeriods.invalid, 'is-valid': form.submitted && editWorkingPeriods.valid}">
+                      <option [value]="null" disabled selected>اختر اسم العامل</option>
+                      @for (emp of allEmployeesMain; track emp.id) {
+                      <option [value]="emp.id">{{ emp.name }}</option>
+                      }
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6 mt-2">
+                  <div class="form-section">
+                    <label for="startDate" class="form-label">تاريخ البدء <span class="text-danger">*</span></label>
+                    <input type="date" class="form-control" id="startDate" name="startDate"
+                      [(ngModel)]="editWorkingPeriod.startDate" #startDate="ngModel" required
+                      [ngClass]="{'is-invalid': form.submitted && startDate.invalid, 'is-valid': form.submitted && startDate.valid}">
+                    <div class="invalid-feedback">يرجى إدخال التاريخ</div>
+                  </div>
+                </div>
+                <div class="col-md-6 mt-2">
+                  <div class="form-section">
+                    <label for="endDate" class="form-label">تاريخ النهاية <span class="text-danger">*</span></label>
+                    <input type="date" class="form-control" id="endDate" name="endDate"
+                      [(ngModel)]="editWorkingPeriod.endDate" #endDate="ngModel" required
+                      [ngClass]="{'is-invalid': form.submitted && endDate.invalid, 'is-valid': form.submitted && endDate.valid}">
+                    <div class="invalid-feedback">يرجى إدخال التاريخ</div>
+                  </div>
+                </div>
+                <div class="col-md-6 mt-2">
+                  <div class="form-section">
+                    <label for="extraWork" class="form-label">أعمال اضافية</label>
+                    <input type="number" class="form-control" id="extraWork" name="extraWork"
+                      [(ngModel)]="editWorkingPeriod.extraWork" #extraWork="ngModel" required
+                      [ngClass]="{'is-invalid': form.submitted && extraWork.invalid, 'is-valid': form.submitted && extraWork.valid}">
+                    <div class="invalid-feedback">يرجى إدخال أعمال اضافية</div>
+                  </div>
+                </div>
+                <div class="col-md-6 mt-2">
+                  <div class="form-section">
+                    <label for="workSystem" class="form-label">نظام العمل</label>
+                    <input type="text" class="form-control" id="workSystem" name="workSystem"
+                      [(ngModel)]="editWorkingPeriod.workSystem" #workSystem="ngModel" required
+                      [ngClass]="{'is-invalid': form.submitted && workSystem.invalid, 'is-valid': form.submitted && workSystem.valid}">
+                    <div class="invalid-feedback">يرجى إدخال نظام العمل</div>
+                  </div>
+                </div>
+                <div class="col-md-6 mt-2">
+                  <div class="form-section">
+                    <label for="salary" class="form-label">قيمة المرتب</label>
+                    <input type="number" class="form-control" id="salary" name="salary"
+                      [(ngModel)]="editWorkingPeriod.salary" #salary="ngModel" required
+                      [ngClass]="{'is-invalid': form.submitted && salary.invalid, 'is-valid': form.submitted && salary.valid}">
+                    <div class="invalid-feedback">يرجى إدخال قيمة المرتب</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-footer mt-4">
+                <button type="button" class="btn btn-secondary" (click)="showEditModal = false">إلغاء</button>
+                <button type="submit" class="btn btn-save" [disabled]="isLoading">
+                  @if (isLoading) {
+                  <span class="spinner-border spinner-border-sm me-2"></span>
+                  }
+                  حفظ التعديلات
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+
+
+    <!------------------------ table -------------------------------->
+    <div class="table-responsive custom-table">
+      <div class="row justify-content-between mt-5">
+        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12">
+          <div class="table-title">
+            <h1>الإستعلام عن فترات العمل</h1>
+          </div>
+        </div>
+
+        <div class="col-xl-7 col-lg-6 col-md-5 col-sm-4 col-12 mt-1">
+          <button type="button" class="btn Custombtn-filter" (click)="toggleFilter()">
+            <i class="fa-solid fa-filter"></i>
+            <h6>فلترة</h6>
+          </button>
+        </div>
+      </div>
+      <!-- Filter Modal -->
+      <div class="row">
+        @if (showFilter) {
+        <div class="filter mt-3">
+          <form [formGroup]="filterForm">
+            <h3 class="mb-4">فلترة</h3>
+
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label class="form-label">اسم الموظف</label>
+                <select formControlName="EmployeeName" class="form-control" name="EmployeeName">
+                  <option value="" disabled selected>ابحث باسم الموظف...</option>
+                  @for (Emp of allEmployeesMain; track Emp.name) {
+                  <option [value]="Emp.name">{{ Emp.name }}</option>
+                  }
+                </select>
+              </div>
+            </div>
+
+            <div class="row justify-content-center gap-2 mt-3">
+              <button type="button" class="btn btn-remove w-50" (click)="onClear()">تفريغ</button>
+            </div>
+          </form>
+        </div>
+        }
+      </div>
+      @if (Loading) {
+      <div
+        class="position-absolute top-50 start-50 translate-middle z-3 bg-white bg-opacity-75 w-100 h-100 d-flex align-items-center justify-content-center rounded">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+          <span class="visually-hidden">جاري التحميل...</span>
+        </div>
+      </div>
+      }
+      <table class="table table-bordered custom-table-design text-center mt-3">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>اسم الموظف</th>
+            <th>موقع العمل</th>
+            <th>تاريخ البدء</th>
+            <th>تاريخ النهاية</th>
+            <th>اعمال اضافية</th>
+            <th>نظام العمل</th>
+            <th>قيمة المرتب</th>
+            <th>إجمالي مستحقاته</th>
+            <th>تعديل</th>
+            <th>حذف</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (workPer of allWorkingPeriod; track workPer.id; let i = $index) {
+          <tr>
+            <td>{{ i + 1 }}</td>
+            <td>{{ workPer.employeeName }}</td>
+            <td>{{ workPer.workLocationName }}</td>
+            <td>{{ workPer.startDate }}</td>
+            <td>{{ workPer.endDate }}</td>
+            <td>{{ workPer.extraWork }}</td>
+            <td>{{ workPer.workSystem }}</td>
+            <td>{{ workPer.salary }}</td>
+            <td>{{ workPer.totalDue }}</td>
+            <td>
+              <button class="btn btn-table-edit" (click)="loadworkingPeriodForEdit(workPer.id)">
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-table-delete" (click)="deletedworkingperiod(workPer.id)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          }
+          @empty {
+          <tr>
+            <td colspan="11" class="text-muted py-5">لا يوجد بيانات لعرضهم</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <app-pagination [currentPage]="currentPage" [totalPages]="totalPages" [windowSize]="1"
+      (pageChange)="onPageChange($event)"></app-pagination>
+  </div>
+</div>

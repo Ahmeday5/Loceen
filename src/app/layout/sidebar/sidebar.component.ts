@@ -4,6 +4,7 @@ import {
   AfterViewInit,
   ElementRef,
   ViewChild,
+  HostBinding,
 } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -25,7 +26,7 @@ import {
 })
 export class SidebarComponent implements OnInit, AfterViewInit {
   // حالة الـ Sidebar (مفتوحة أو مغلقة)
-  isSidebarOpen: boolean = window.innerWidth > 992;
+  isSidebarOpen: boolean = false;
 
   // الحالة الجديدة: مصغر أو مكبر (للديسكتوب)
   isCollapsed: boolean = false;
@@ -36,12 +37,21 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   @ViewChild('searchInput', { static: true })
   searchInputRef!: ElementRef<HTMLInputElement>;
 
+  @HostBinding('style.--sidebar-width')
+  get sidebarWidth(): string {
+    if (this.isCollapsed && window.innerWidth >= 993) {
+      return '70px';
+    }
+    return '250px';
+  }
+
   // حقن Router و AuthService
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   // التهيئة عند تحميل الكومبوننت
   ngOnInit(): void {
     this.updateMenuItems();
+    this.updateSidebarState();
     // في البداية العرض يعرض القائمة كلها
     this.filteredMenuItems = JSON.parse(JSON.stringify(this.menuItems));
 
@@ -57,23 +67,34 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
 
+  // فتح وإغلاق السايدبار في الموبايل فقط
+  toggleMobileSidebar(): void {
+    if (window.innerWidth <= 992) {
+      this.isSidebarOpen = !this.isSidebarOpen;
+    }
+  }
+
   // تصغير / تكبير الـ Sidebar (للديسكتوب
   toggleCollapse(): void {
-    this.isCollapsed = !this.isCollapsed;
-    // احفظ الحالة عشان لما يعمل ريفرش يفضل زي ما هو
-    localStorage.setItem('sidebarCollapsed', this.isCollapsed.toString());
+    if (window.innerWidth >= 993) {
+      this.isCollapsed = !this.isCollapsed;
+      localStorage.setItem('sidebarCollapsed', this.isCollapsed.toString());
+
+      // إجبار Angular على إعادة حساب الـ layout
+      window.dispatchEvent(new Event('resize'));
+    }
+  }
+
+  // عند الضغط على أي عنصر في القايمة (في الموبايل بس يتقفل)
+  onMenuItemClick(): void {
+    if (window.innerWidth <= 992) {
+      this.isSidebarOpen = false; // إغلاق تلقائي في الموبايل
+    }
   }
 
   // بعد تحميل العرض
   ngAfterViewInit(): void {
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= 992) {
-        this.isSidebarOpen = false; // موبايل → مخفي
-        this.isCollapsed = false; // نلغي التصغير في الموبايل
-      } else {
-        this.isSidebarOpen = true; // ديسكتوب → مفتوح دايماً
-      }
-    });
+    window.addEventListener('resize', () => this.updateSidebarState());
 
     // اشتراك على أحداث الإدخال مع debounce لتقليل النداءات أثناء الكتابة
     this.searchSub = fromEvent(this.searchInputRef.nativeElement, 'input')
@@ -90,6 +111,15 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
   ngOnDestroy(): void {
     if (this.searchSub) this.searchSub.unsubscribe();
+  }
+
+  // دالة لتحديد حالة السايدبار بناءً على حجم الشاشة
+  private updateSidebarState(): void {
+    const isDesktop = window.innerWidth >= 993;
+    this.isSidebarOpen = isDesktop ? true : false; // في الديسكتوب دايمًا مفتوح
+    if (!isDesktop) {
+      this.isCollapsed = false; // الموبايل ما يستخدمش التصغير
+    }
   }
 
   // التحقق إذا كان الرابط نشطًا
@@ -203,6 +233,12 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     }
   }
 
+  // دالة تسجيل الخروج
+  logout(): void {
+    this.authService.logout(); // استدعاء دالة logout من AuthService
+    this.router.navigate(['/']); // التنقل إلى صفحة تسجيل الدخول
+  }
+
   private updateMenuItems(): void {
     this.menuItems = [
       {
@@ -217,14 +253,9 @@ export class SidebarComponent implements OnInit, AfterViewInit {
             icons: 'fa-solid fa-truck-fast',
             submenu: [
               {
-                key: 'إضافة مبيع',
+                key: 'إدارة المبيعات',
                 path: '/add-sale',
                 icon: 'fa-solid fa-id-card',
-              },
-              {
-                key: 'الاستعلام عن المبيعات',
-                path: '/Sales-Inquiry',
-                icon: 'fa-solid fa-map-location-dot',
               },
             ],
           },
@@ -242,11 +273,11 @@ export class SidebarComponent implements OnInit, AfterViewInit {
                 path: '/add-emp',
                 icon: 'fa-solid fa-map-location-dot',
               },
-              {
+              /*{
                 key: 'الاستعلام عن العاملين',
                 path: '/inquiry-emp',
                 icon: 'fa-solid fa-map-location-dot',
-              },
+              },*/
             ],
           },
           {
@@ -265,7 +296,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
             icons: 'fa-solid fa-rotate-left',
             submenu: [
               {
-                key: 'تسجيل المصروفات',
+                key: 'تسجيل المقبوضات',
                 path: '/Recording-Receipts',
                 icon: 'fa-solid fa-user-ninja',
               },
@@ -276,6 +307,11 @@ export class SidebarComponent implements OnInit, AfterViewInit {
             icons: 'fa-solid fa-rotate-left',
             submenu: [
               {
+                key: 'بيانات المعدة',
+                path: '/EquipmentData',
+                icon: 'fa-solid fa-user-ninja',
+              },
+              {
                 key: 'العربيات والمعدات',
                 path: '/Vehicles-Equipment',
                 icon: 'fa-solid fa-user-ninja',
@@ -283,17 +319,22 @@ export class SidebarComponent implements OnInit, AfterViewInit {
             ],
           },
           {
-            label: 'نظام المرتبات',
+            label: 'نظام فترة العمل',
             icons: 'fa-solid fa-rotate-left',
             submenu: [
               {
-                key: 'جميع الانظمة',
-                path: '/Salaries-System',
+                key: 'فترة العمل',
+                path: '/Employee-Advance',
                 icon: 'fa-solid fa-user-ninja',
               },
             ],
           },
           {
+            label: 'المستخدمين',
+            path: '/appUser',
+            icons: 'fa-solid fa-gauge-high',
+          },
+          /*{
             label: 'نظام النسبة',
             icons: 'fa-solid fa-rotate-left',
             submenu: [
@@ -356,7 +397,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
             label: 'الضبط',
             path: '/Settings',
             icons: 'fa-solid fa-gauge-high',
-          },
+          },*/
         ],
       },
     ];
