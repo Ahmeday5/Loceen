@@ -1,109 +1,154 @@
-<div class="loginPage">
-  <div class="container-fluid">
-    <div class="row align-content-center align-items-center justify-content-center" style="min-height: 100vh;">
-      <div class="col-md-10 p-0">
-        <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
-          <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-            <path
-              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-          </symbol>
-          <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-            <path
-              d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-          </symbol>
-        </svg>
-        @if (errorMessage) {
-        <div class="col-md-12">
-          <div class="row justify-content-center">
-            <div class="alert alert-danger d-flex align-items-center mt-4 w-75" role="alert">
-              <svg class="bi flex-shrink-0 me-2 ms-3" width="24" height="24" role="img" aria-label="Danger:">
-                <use xlink:href="#exclamation-triangle-fill" />
-              </svg>
-              <div>{{ errorMessage }}</div>
-            </div>
+<div class="loginPage" dir="rtl">
+  <div class="login-wrapper">
+
+    <!-- Left Column: Login Form -->
+    <div class="login-panel">
+      <div class="login-panel-inner">
+
+        <div class="brand-block">
+          <div class="brand-logo">
+            <img src="/assets/img/login/logo-login.png" alt="logo" class="logo-main">
+            <img src="/assets/img/login/logo2.png" alt="logo2" class="logo-badge">
           </div>
+          <h2 class="brand-title">لوسين</h2>
+          <p class="brand-subtitle">للحفر والتعدين</p>
+        </div>
+
+        <div class="form-heading">
+          <h1>مرحبـاً بعودتك</h1>
+          <p>سجّل الدخول للوصول إلى لوحة التحكم</p>
+        </div>
+
+        @if (errorMessage) {
+        <div class="alert-box" role="alert">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span>{{ errorMessage }}</span>
         </div>
         }
-        <div class="form-login">
-          <div class="row col-reverse">
-            <div class="col-xl-8 col-lg-8 col-12 p-0">
-              <form class="mt-4" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-                <div class="row justify-content-center">
-                  <div class="col-12">
-                    <h1 class="text-center">مرحبــا!</h1>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-group mt-4">
-                      <label for="email" class="form-label">اسم المستخدم</label>
-                      <input type="email" placeholder="اسم المستخدم" class="form-control" id="email" name="email"
-                        [(ngModel)]="email" required>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-group mt-3">
-                      <label for="password" class="form-label">كلمة السر</label>
-                      <input [type]="showPassword ? 'text' : 'password'" placeholder="كلمة السر" class="form-control"
-                        id="password" name="password" [(ngModel)]="password" required>
-                      <span class="password-toggle" (click)="togglePassword()">
-                        <i class="fa-regular {{ showPassword ? 'fa-eye-slash' : 'fa-eye' }}"
-                          style="color: var(--second-color);"></i>
-                      </span>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="remember-content mt-2">
-                      <div class="remember form-check">
-                        <label class="form-check-label" for="checkDefault">
-                          تذكرني
-                        </label>
-                        <input class="form-check-input" type="checkbox" id="checkDefault" name="rememberMe"
-                          [(ngModel)]="rememberMe">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-12 submit text-center mt-4">
-                    <button type="submit" [disabled]="isLoading || loginForm.invalid" class="btn"><span
-                        *ngIf="isLoading" class="spinner-border spinner-border-sm"></span> تسجيل الدخول</button>
-                  </div>
-                  <div class="text-center forgetpass mt-2">
-                    <a href="#" class="btn" role="button" data-bs-toggle="button">نسيت كلمة المرور؟</a>
-                  </div>
-                </div>
-              </form>
+
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="login-form">
+          <div class="form-group">
+            <label for="email" class="form-label">اسم المستخدم</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-user"></i>
+              <input type="email" placeholder="اسم المستخدم" class="form-control" id="email" name="email"
+                [(ngModel)]="email" required>
             </div>
-            <div class="col-xl-4 col-lg-4 col-12 p-0 d-flex justify-content-center align-items-center">
-              <div class="row">
-                <div class="col-12 content-imgs">
-                  <div class="imgs">
-                    <img src="/assets/img/login/logo-login.png" class="img-fluid" alt="logo">
-                    <img src="/assets/img/login/logo2.png" class="img-fluid img2" alt="logo2">
-                  </div>
-                  <h2>لوسين</h2>
-                  <h4>للحفر والتعدين</h4>
-                </div>
-              </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="form-label">كلمة السر</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-lock"></i>
+              <input [type]="showPassword ? 'text' : 'password'" placeholder="كلمة السر" class="form-control"
+                id="password" name="password" [(ngModel)]="password" required>
+              <span class="password-toggle" (click)="togglePassword()">
+                <i class="fa-regular {{ showPassword ? 'fa-eye-slash' : 'fa-eye' }}"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-row-between">
+            <div class="remember form-check">
+              <input class="form-check-input" type="checkbox" id="checkDefault" name="rememberMe"
+                [(ngModel)]="rememberMe">
+              <label class="form-check-label" for="checkDefault">تذكرني</label>
+            </div>
+            <a href="#" class="forgetpass-link" role="button" data-bs-toggle="button">نسيت كلمة المرور؟</a>
+          </div>
+
+          <button type="submit" [disabled]="isLoading || loginForm.invalid" class="btn-submit">
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
+            <span>تسجيل الدخول</span>
+            <i class="fa-solid fa-arrow-left" *ngIf="!isLoading"></i>
+          </button>
+        </form>
+
+        <div class="login-footer-note">
+          <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+          <div class="contact-info">
+            <span><i class="fa-solid fa-globe"></i> www.co.com</span>
+            <span><i class="fa-regular fa-envelope"></i> info.com</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right Column: Information Panel -->
+    <div class="info-panel">
+      <div class="info-panel-overlay"></div>
+      <div class="info-panel-inner">
+
+        <div class="info-header">
+          <span class="info-badge"><i class="fa-solid fa-gauge-high"></i> لوحة التحكم المؤسسية</span>
+          <h2>نظام إدارة العمليات المتكامل</h2>
+          <p>
+            منصة رقمية شاملة لإدارة العمليات المالية والتشغيلية لشركات الحفر والتعدين،
+            تتيح لك متابعة كل تفاصيل أعمالك بدقة وسهولة من مكان واحد.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-truck-fast"></i></div>
+            <div class="feature-text">
+              <h4>المبيعات والموردين</h4>
+              <p>إدارة المبيعات، الموردين، وبيانات العاملين بكل سهولة</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+            <div class="feature-text">
+              <h4>المصروفات والمقبوضات</h4>
+              <p>تسجيل ومتابعة كافة الحركات المالية والمعاملات النقدية</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-truck-monster"></i></div>
+            <div class="feature-text">
+              <h4>العربيات والمعدات</h4>
+              <p>متابعة بيانات المعدات، ساعات العمل، والتحويلات بين المواقع</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+            <div class="feature-text">
+              <h4>الرواتب والسلف</h4>
+              <p>نظام رواتب متكامل مع إدارة سلف الموظفين وحساباتهم</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-percent"></i></div>
+            <div class="feature-text">
+              <h4>نظام النسب</h4>
+              <p>حساب واستعلام نسب الأرباح والعمولات بدقة</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+            <div class="feature-text">
+              <h4>الاستعلامات والتقارير</h4>
+              <p>استعلامات تفصيلية عن المعدات والحسابات في أي وقت</p>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="footer">
-    <div class="row align-items-center">
-      <div class="col-md-6 d-flex">
-        <i class="fa-brands fa-facebook-f"></i>
-        <i class="fa-brands fa-linkedin"></i>
-        <i class="fa-brands fa-instagram"></i>
-      </div>
-      <div class="col-md-6 d-flex justify-content-end align-items-center mt-1">
-        <div class="email">
-          <h6>www.co.com<i class="fa-solid fa-globe"></i></h6>
+        <div class="info-footer">
+          <p>Developed by <span>TheOneSystem</span></p>
         </div>
-        <div class="web me-5">
-          <h6>info.com<i class="fa-regular fa-envelope"></i></h6>
-        </div>
+
       </div>
     </div>
+
   </div>
 </div>
